@@ -28,7 +28,9 @@ const tools = require("./utils/shape.utils");
   let shape;
   switch (choice) {
     case "1":
-      const base = await rl.question("La taille des côtés est de : \n");
+      const baseStr = await rl.question("La taille des côtés est de : \n");
+      const base = Number.parseFloat(baseStr);
+
       shape = {
         type: 4,
         // En JS, si la valeur de la clé d'un object à le même nom que sa clé, il n'est pas nécessaire
@@ -40,25 +42,26 @@ const tools = require("./utils/shape.utils");
       break;
     case "2":
     case "3":
-      const height = await rl.question(
+      const heightStr = await rl.question(
         "Quelle est la hauteur de votre forme ? \n",
       );
-      const width = await rl.question(
+      const widthStr = await rl.question(
         "Quelle est la largeur de votre forme ? \n",
       );
+
       shape = {
         type: choice === "2" ? 2 : 3,
-        height,
-        width,
+        height : Number.parseFloat(heightStr),
+        width : Number.parseFloat(widthStr),
       };
       break;
     case "4":
-      const radius = await rl.question(
+      const radiusStr = await rl.question(
         "Quelle est le rayon de votre cercle ? \n",
       );
       shape = {
         type: 1,
-        radius,
+        radius : Number(radiusStr),
       };
       break;
     default:
